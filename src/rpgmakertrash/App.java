@@ -7,6 +7,7 @@ public class App {
 	private static Scanner scanner = new Scanner(System.in);
 	private static Node first = null;
 	private static Node last = null;
+	private static Node current = null;
 	
 	public static void main(String[] args) {
 		
@@ -15,12 +16,12 @@ public class App {
 		addFirst(card);
 		addFirst(quarter);
 		addFirst(new Thing("Condom"));
-		junkDraw();
+		junkDrawer();
 
 	}
 	
-	public static void junkDraw() {
-		System.out.println("Welcome to Tossitn - Junk Draw Simulator");
+	public static void junkDrawer() {
+		System.out.println("Welcome to Tossitn - Junk Drawer Simulator");
 		mainMenuInstructions();
 		boolean quit = false;
 		while (!quit) {
@@ -48,7 +49,7 @@ public class App {
 	
 	public static void mainMenuInstructions() {
 		System.out.println("Press: ");
-		System.out.println("1 - To add an item to the draw");
+		System.out.println("1 - To add an item to the drawer");
 		System.out.println("2 - To print a list of items");
 		System.out.println("3 - To cycle trough items manually");
 		System.out.println("4 - To print instructions");
@@ -87,15 +88,29 @@ public class App {
 	}
 	
 	private static void addNode(int i) {
+		Node newNode;
+		if(i == 1) {
+			System.out.println("Enter coin or bill type by dallor value e.g. 0.25 for a quarter");
+			double value = scanner.nextDouble();
+			newNode = new Money(value);
+		} else {
+			System.out.println("Enter he name of the object");
+			String title = scanner.nextLine();
+			newNode = new Thing(title);
+		}
 		
+		if(first == null) {
+			addFirst(newNode);
+		}
 	}
 	
 	public static void addFirst(Node node) {
 		node.setNext(first);
 		first = node;
+		System.out.println("First node added");
 		if(last == null) {
 			last = node;
-			}
+		}
 	}
 	
 	public static void addLast(Node node) {
@@ -110,6 +125,16 @@ public class App {
 			System.out.println(i + ". " +current.getData());
 			current = current.getNext();
 			i++;
+		}
+	}
+	
+	public static void interateThroughNodes() {
+		if(first == null) {
+			System.out.println("Nothing in the drawer.");
+		}
+		Node position;
+		if(current == null) {
+			position = first;
 		}
 	}
 }
