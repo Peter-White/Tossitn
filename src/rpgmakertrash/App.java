@@ -10,12 +10,12 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-//		Node card = new Thing("A discarded Ace of Spades");
-//		Node quarter = new Money(0.25);
-//		addFirst(card);
-//		addFirst(quarter);
-//		addFirst(new Thing("Condom"));
-//		printList();
+		Node card = new Thing("A discarded Ace of Spades");
+		Node quarter = new Money(0.25);
+		addFirst(card);
+		addFirst(quarter);
+		addFirst(new Thing("Condom"));
+		junkDraw();
 
 	}
 	
@@ -36,7 +36,11 @@ public class App {
 			case 3:
 				System.out.println("Under Construction");
 				break;
+			case 4:
+				mainMenuInstructions();
+				break;
 			default:
+				System.out.println("Not Valid");
 				break;
 			}
 		}
@@ -47,7 +51,7 @@ public class App {
 		System.out.println("1 - To add an item to the draw");
 		System.out.println("2 - To print a list of items");
 		System.out.println("3 - To cycle trough items manually");
-		System.out.println("4 - To print instruction");
+		System.out.println("4 - To print instructions");
 		System.out.println("0 - To quit");
 	}
 	public static void addNodeInstructions() {
