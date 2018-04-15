@@ -47,22 +47,6 @@ public class App {
 		}
 	}
 	
-	public static void mainMenuInstructions() {
-		System.out.println("Press: ");
-		System.out.println("1 - To add an item to the drawer");
-		System.out.println("2 - To print a list of items");
-		System.out.println("3 - To cycle trough items manually");
-		System.out.println("4 - To print instructions");
-		System.out.println("0 - To quit");
-	}
-	public static void addNodeInstructions() {
-		System.out.println("Press: ");
-		System.out.println("1 - To add a coin / dallor bill");
-		System.out.println("2 - To add a random object");
-		System.out.println("3 - To print instructions");
-		System.out.println("0 - To go back");
-	}
-	
 	private static void addNodeMenu() {
 		addNodeInstructions();
 		boolean back = false;
@@ -85,6 +69,71 @@ public class App {
 				break;
 			}
 		}
+	}
+	
+	public static void interateThroughNodes() {
+		if(first == null) {
+			System.out.println("Nothing in the drawer.");
+		}
+		Node position;
+		if(current == null) {
+			position = first;
+		} else {
+			position = current;
+		}
+		interationMenu();
+		boolean back = false;
+		while (!back) {
+			System.out.println(position.getData());
+			int choice = scanner.nextInt();
+			switch (choice) {
+			case 1:
+				if(position.getNext() != null) {
+					position = position.getNext();
+					current = position;
+				} else {
+					System.out.println("Bottom of the drawer reached");
+				}
+				break;
+			case 2:
+				if(position.getPrevious() != null) {
+					position = position.getPrevious();
+					current = position;
+				} else {
+					System.out.println("Top of the pile reached");
+				}
+				break;
+			default:
+				System.out.println("Not Valid");
+				break;
+			}
+		}
+	}
+	
+	public static void mainMenuInstructions() {
+		System.out.println("Press: ");
+		System.out.println("1 - To add an item to the drawer");
+		System.out.println("2 - To print a list of items");
+		System.out.println("3 - To cycle trough items manually");
+		System.out.println("4 - To print instructions");
+		System.out.println("0 - To quit");
+	}
+	public static void addNodeInstructions() {
+		System.out.println("Press: ");
+		System.out.println("1 - To add a coin / dallor bill");
+		System.out.println("2 - To add a random object");
+		System.out.println("3 - To print instructions");
+		System.out.println("0 - To go back");
+	}
+	public static void interationMenu() {
+		System.out.println("Press: ");
+		System.out.println("1 - To go to the next item");
+		System.out.println("2 - To go back to the previous item");
+		System.out.println("3 - To add a new item");
+		System.out.println("4 - To remove an item");
+		System.out.println("5 - To start from the begining");
+		System.out.println("6 - To print instructions");
+		System.out.println("0 - To go back");
 	}
 	
 	private static void addNode(int i) {
@@ -125,16 +174,6 @@ public class App {
 			System.out.println(i + ". " +current.getData());
 			current = current.getNext();
 			i++;
-		}
-	}
-	
-	public static void interateThroughNodes() {
-		if(first == null) {
-			System.out.println("Nothing in the drawer.");
-		}
-		Node position;
-		if(current == null) {
-			position = first;
 		}
 	}
 }
