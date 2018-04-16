@@ -15,7 +15,7 @@ public class App {
 		Node quarter = new Money(0.25);
 		addFirst(card);
 		addFirst(quarter);
-		addFirst(new Thing("Condom"));
+		addFirst(new Thing("Matchbook"));
 		junkDrawer();
 
 	}
@@ -35,7 +35,7 @@ public class App {
 				printList();
 				break;
 			case 3:
-				System.out.println("Under Construction");
+				iterationMenu();
 				break;
 			case 4:
 				mainMenuInstructions();
@@ -51,6 +51,7 @@ public class App {
 		addNodeInstructions();
 		boolean back = false;
 		while (!back) {
+			System.out.println("Enter your choice");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -72,7 +73,7 @@ public class App {
 		}
 	}
 	
-	public static void iterationThroughNodes() {
+	public static void iterationMenu() {
 		if(first == null) {
 			System.out.println("Nothing in the drawer.");
 		}
