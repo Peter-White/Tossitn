@@ -82,13 +82,12 @@ public class App {
 			position = first;
 		} else {
 			position = current;
-			current = position;
 		}
+		current = position;
 		iterationInstructions();
 		System.out.println("Currently set to: " + position.getData());
 		boolean back = false;
 		while (!back) {
-			System.out.println(position.getData());
 			System.out.println("Enter your choice");
 			int choice = scanner.nextInt();
 			switch (choice) {
@@ -96,17 +95,19 @@ public class App {
 				if(position.getNext() != null) {
 					position = position.getNext();
 					current = position;
+					System.out.println(position.getData());
 				} else {
 					System.out.println("Bottom of the drawer reached");
 				}
 				break;
 			case 2:
-				System.out.println(current.getData());
+				System.out.println(position.getData());
 				break;
 			case 3:
 				if(position.getPrevious() != null) {
 					position = position.getPrevious();
 					current = position;
+					System.out.println(position.getData());
 				} else {
 					System.out.println("Top of the pile reached");
 				}
@@ -221,6 +222,7 @@ public class App {
 			first = node;
 		} else {
 			node.setNext(first);
+			first.setPrevious(node);
 			first = node;
 		}
 		System.out.println(node.getData() + " is on top of the pile");
