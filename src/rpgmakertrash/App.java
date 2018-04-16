@@ -1,5 +1,6 @@
 package rpgmakertrash;
 
+import java.security.DrbgParameters.NextBytes;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -40,10 +41,10 @@ public class App {
 				}
 				break;
 			case 4:
-				mainMenuInstructions();
+				quit = true;
 				break;
 			case 0:
-				quit = true;
+				mainMenuInstructions();
 				break;
 			default:
 				System.out.println("Not Valid");
@@ -65,11 +66,11 @@ public class App {
 				addFirst(newNode);
 				break;
 			case 3:
-				addNodeInstructions();
-				break;
-			case 0:
 				System.out.println("Back to main");
 				back = true;
+				break;
+			case 0:
+				addNodeInstructions();
 				break;
 			default:
 				System.out.println("Not valid");
@@ -138,11 +139,11 @@ public class App {
 				System.out.println(current.getData());
 				break;
 			case 7:
-				iterationInstructions();
-				break;
-			case 0:
 				System.out.println("Back to main");
 				back = true;
+				break;
+			case 0:
+				iterationInstructions();
 				break;
 			default:
 				System.out.println("Not Valid");
@@ -208,8 +209,21 @@ public class App {
 			selection = selection.toLowerCase();
 			switch (selection) {
 				case "y":
-					node.getPrevious().setNext(node.getNext());
-					node.getNext().setPrevious(node.getPrevious());
+					if(node == first && node != last) {
+						node.getNext().setPrevious(null);
+						first = node.getNext();
+						System.out.println("First item removed from drawer");
+					} else if (node != first && node == last) {
+						node.getPrevious().setNext(null);
+						last = node.getPrevious();
+					} else if (node != first && node != last) {
+						node.getPrevious().setNext(node.getNext());
+						node.getNext().setPrevious(node.getPrevious());
+					} else {
+						first = null;
+						last = null;
+					}
+					done = true;
 					break;
 				case "n":
 					done = true;
@@ -259,7 +273,8 @@ public class App {
 			newNode = new Money(value);
 		} else {
 			System.out.println("Enter the name of the object");
-			String thing = scanner.next();
+			scanner.nextLine();
+			String thing = scanner.nextLine();
 			System.out.println(thing);
 			newNode = new Thing(thing);
 		}
