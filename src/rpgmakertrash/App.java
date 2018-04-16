@@ -1,5 +1,6 @@
 package rpgmakertrash;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -11,11 +12,6 @@ public class App {
 	
 	public static void main(String[] args) {
 		
-		Node card = new Thing("A discarded Ace of Spades");
-		Node quarter = new Money(0.25);
-		addFirst(card);
-		addFirst(quarter);
-		addFirst(new Thing("Matchbook"));
 		junkDrawer();
 
 	}
@@ -26,7 +22,9 @@ public class App {
 		boolean quit = false;
 		while (!quit) {
 			System.out.println("Enter your choice");
+			
 			int choice = scanner.nextInt();
+
 			switch (choice) {
 			case 1:
 				addNodeMenu();
@@ -35,10 +33,17 @@ public class App {
 				printList();
 				break;
 			case 3:
-				iterationMenu();
+				if(first != null) {
+					iterationMenu();
+				} else {
+					System.out.println("Nothing in the drawer. Try adding something first.");
+				}
 				break;
 			case 4:
 				mainMenuInstructions();
+				break;
+			case 0:
+				quit = true;
 				break;
 			default:
 				System.out.println("Not Valid");
@@ -152,8 +157,8 @@ public class App {
 		System.out.println("1 - To add an item to the top of the drawer");
 		System.out.println("2 - To print a list of items");
 		System.out.println("3 - To cycle trough items manually");
-		System.out.println("4 - To print instructions");
-		System.out.println("0 - To quit");
+		System.out.println("4 - To quit");
+		System.out.println("0 - To print instructions");
 		System.out.println("");
 	}
 	public static void addNodeInstructions() {
@@ -161,8 +166,8 @@ public class App {
 		System.out.println("Press: ");
 		System.out.println("1 - To add a coin / dallor bill");
 		System.out.println("2 - To add a random object");
-		System.out.println("3 - To print instructions");
-		System.out.println("0 - To go back");
+		System.out.println("3 - To go back");
+		System.out.println("0 - To print instructions");
 		System.out.println("");
 	}
 	public static void iterationInstructions() {
@@ -174,8 +179,8 @@ public class App {
 		System.out.println("4 - To add a new item");
 		System.out.println("5 - To remove an item");
 		System.out.println("6 - To start from the begining");
-		System.out.println("7 - To print instructions");
-		System.out.println("0 - To go back");
+		System.out.println("7 - To go back");
+		System.out.println("0 - To print instructions");
 		System.out.println("");
 	}
 	
@@ -253,9 +258,10 @@ public class App {
 			double value = scanner.nextDouble();
 			newNode = new Money(value);
 		} else {
-			System.out.println("Enter he name of the object");
-			String title = scanner.nextLine();
-			newNode = new Thing(title);
+			System.out.println("Enter the name of the object");
+			String thing = scanner.next();
+			System.out.println(thing);
+			newNode = new Thing(thing);
 		}
 		return newNode;
 	}
