@@ -82,12 +82,14 @@ public class App {
 			position = first;
 		} else {
 			position = current;
+			current = position;
 		}
 		iterationInstructions();
-		System.out.println("Currently set to: " + current.getData());
+		System.out.println("Currently set to: " + position.getData());
 		boolean back = false;
 		while (!back) {
 			System.out.println(position.getData());
+			System.out.println("Enter your choice");
 			int choice = scanner.nextInt();
 			switch (choice) {
 			case 1:
@@ -144,21 +146,26 @@ public class App {
 	}
 	
 	public static void mainMenuInstructions() {
+		System.out.println("");
 		System.out.println("Press: ");
 		System.out.println("1 - To add an item to the top of the drawer");
 		System.out.println("2 - To print a list of items");
 		System.out.println("3 - To cycle trough items manually");
 		System.out.println("4 - To print instructions");
 		System.out.println("0 - To quit");
+		System.out.println("");
 	}
 	public static void addNodeInstructions() {
+		System.out.println("");
 		System.out.println("Press: ");
 		System.out.println("1 - To add a coin / dallor bill");
 		System.out.println("2 - To add a random object");
 		System.out.println("3 - To print instructions");
 		System.out.println("0 - To go back");
+		System.out.println("");
 	}
 	public static void iterationInstructions() {
+		System.out.println("");
 		System.out.println("Press: ");
 		System.out.println("1 - To go to the next item");
 		System.out.println("2 - To see current item");
@@ -168,6 +175,7 @@ public class App {
 		System.out.println("6 - To start from the begining");
 		System.out.println("7 - To print instructions");
 		System.out.println("0 - To go back");
+		System.out.println("");
 	}
 	
 	private static void addNode(Node node, int choice) {
