@@ -1,7 +1,5 @@
 package rpgmakertrash;
 
-import java.security.DrbgParameters.NextBytes;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -60,21 +58,22 @@ public class App {
 			System.out.println("Enter your choice");
 			int choice = scanner.nextInt();
 			switch (choice) {
-			case 1:
-			case 2:
-				Node newNode = createNode(choice);
-				addFirst(newNode);
-				break;
-			case 3:
-				System.out.println("Back to main");
-				back = true;
-				break;
-			case 0:
-				addNodeInstructions();
-				break;
-			default:
-				System.out.println("Not valid");
-				break;
+				case 1:
+				case 2:
+					Node newNode = createNode(choice);
+					addFirst(newNode);
+					break;
+				case 3:
+					System.out.println("Back to main");
+					System.out.println("");
+					back = true;
+					break;
+				case 0:
+					addNodeInstructions();
+					break;
+				default:
+					System.out.println("Not valid");
+					break;
 			}
 		}
 	}
@@ -119,7 +118,17 @@ public class App {
 				}
 				break;
 			case 4:
-				addNode(position, choice);
+				addNodeInstructionsMin();
+				int type = scanner.nextInt();
+				switch (type) {
+					case 1:
+					case 2:
+						addNode(position, type);
+						break;
+					default:
+						System.out.println("Not valid");
+						break;
+				}
 				break;
 			case 5:
 				deleteNode(position);
@@ -140,6 +149,7 @@ public class App {
 				break;
 			case 7:
 				System.out.println("Back to main");
+				System.out.println("");
 				back = true;
 				break;
 			case 0:
@@ -169,6 +179,13 @@ public class App {
 		System.out.println("2 - To add a random object");
 		System.out.println("3 - To go back");
 		System.out.println("0 - To print instructions");
+		System.out.println("");
+	}
+	public static void addNodeInstructionsMin() {
+		System.out.println("");
+		System.out.println("Press: ");
+		System.out.println("1 - To add a coin / dallor bill");
+		System.out.println("2 - To add a random object");
 		System.out.println("");
 	}
 	public static void iterationInstructions() {
@@ -245,6 +262,7 @@ public class App {
 			first = node;
 		}
 		System.out.println(node.getData() + " is on top of the pile");
+		System.out.println("");
 		if(last == null) {
 			last = node;
 		}
@@ -252,6 +270,7 @@ public class App {
 	
 	public static void addLast(Node node) {
 		node.setPrevious(last);
+		last.setNext(node);
 		last = node;
 	}
 	
@@ -275,7 +294,6 @@ public class App {
 			System.out.println("Enter the name of the object");
 			scanner.nextLine();
 			String thing = scanner.nextLine();
-			System.out.println(thing);
 			newNode = new Thing(thing);
 		}
 		return newNode;
