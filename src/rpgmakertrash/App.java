@@ -73,6 +73,7 @@ public class App {
 					break;
 				default:
 					System.out.println("Not valid");
+					System.out.println("");
 					break;
 			}
 		}
@@ -81,6 +82,7 @@ public class App {
 	public static void iterationMenu() {
 		if(first == null) {
 			System.out.println("Nothing in the drawer.");
+			System.out.println("");
 		}
 		Node position;
 		if(current == null) {
@@ -91,6 +93,7 @@ public class App {
 		current = position;
 		iterationInstructions();
 		System.out.println("Currently set to: " + position.getData());
+		System.out.println("");
 		boolean back = false;
 		while (!back) {
 			System.out.println("Enter your choice");
@@ -103,10 +106,12 @@ public class App {
 					System.out.println(position.getData());
 				} else {
 					System.out.println("Bottom of the drawer reached");
+					System.out.println("");
 				}
 				break;
 			case 2:
 				System.out.println(position.getData());
+				System.out.println("");
 				break;
 			case 3:
 				if(position.getPrevious() != null) {
@@ -115,6 +120,7 @@ public class App {
 					System.out.println(position.getData());
 				} else {
 					System.out.println("Top of the pile reached");
+					System.out.println("");
 				}
 				break;
 			case 4:
@@ -127,6 +133,7 @@ public class App {
 						break;
 					default:
 						System.out.println("Not valid");
+						System.out.println("");
 						break;
 				}
 				break;
@@ -146,6 +153,7 @@ public class App {
 			case 6:
 				current = first;
 				System.out.println(current.getData());
+				System.out.println("");
 				break;
 			case 7:
 				System.out.println("Back to main");
@@ -157,6 +165,7 @@ public class App {
 				break;
 			default:
 				System.out.println("Not Valid");
+				System.out.println("");
 				break;
 			}
 		}
@@ -212,8 +221,10 @@ public class App {
 		} else {
 			next.setPrevious(newNode);
 			node.setNext(newNode);
+			node.setNext(next);
 			System.out.println(newNode.getData() + " is lying between " + 
 			node.getData() + " and " + next.getData());
+			System.out.println("");
 		}
 	}
 	
@@ -229,10 +240,13 @@ public class App {
 					if(node == first && node != last) {
 						node.getNext().setPrevious(null);
 						first = node.getNext();
-						System.out.println("First item removed from drawer");
+						System.out.println("The first item has been removed from drawer");
+						System.out.println("");
 					} else if (node != first && node == last) {
 						node.getPrevious().setNext(null);
 						last = node.getPrevious();
+						System.out.println("The last item has been removed from drawer");
+						System.out.println("");
 					} else if (node != first && node != last) {
 						node.getPrevious().setNext(node.getNext());
 						node.getNext().setPrevious(node.getPrevious());
