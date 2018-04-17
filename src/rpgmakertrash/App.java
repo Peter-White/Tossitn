@@ -216,6 +216,7 @@ public class App {
 		Node next = node.getNext();
 		if(next == null) {
 			node.setNext(newNode);
+			newNode.setPrevious(node);
 			last = newNode;
 			System.out.println(newNode.getData() + " is at the bottom of the drawer");
 		} else {
