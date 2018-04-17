@@ -221,7 +221,8 @@ public class App {
 		} else {
 			next.setPrevious(newNode);
 			node.setNext(newNode);
-			node.setNext(next);
+			newNode.setNext(next);
+			newNode.setPrevious(node);
 			System.out.println(newNode.getData() + " is lying between " + 
 			node.getData() + " and " + next.getData());
 			System.out.println("");
@@ -261,6 +262,7 @@ public class App {
 					break;
 				default:
 					System.out.println("Not Valid");
+					System.out.println("");
 					break;
 			}
 		}
@@ -296,6 +298,7 @@ public class App {
 			current = current.getNext();
 			i++;
 		}
+		System.out.println("");
 	}
 	
 	public static Node createNode(int choice) {
