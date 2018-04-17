@@ -10,7 +10,7 @@ public class App {
 	private static Node current = null;
 	
 	public static void main(String[] args) {
-		
+
 		junkDrawer();
 
 	}
@@ -235,6 +235,7 @@ public class App {
 		while (!done) {
 			System.out.println("Are you sure you want to delete " + node.getData()
 			 + "? (y/n)");
+			scanner.nextLine();
 			String selection = scanner.nextLine();
 			selection = selection.toLowerCase();
 			switch (selection) {
